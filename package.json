@@ -2,7 +2,7 @@
   "name": "@onesy/cookie",
   "version": "1.0.0",
   "description": "Cookie",
-  "repository": "https://github.com/onesy-org/onesy-cookie.git",
+  "repository": "https://github.com/onesy-me/cookie.git",
   "author": "Lazar <lazareric2@gmail.com>",
   "license": "MIT",
   "private": false,
