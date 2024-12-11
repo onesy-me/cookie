@@ -4,11 +4,11 @@
 
 <p align='center'>
   <a target='_blank' rel='noopener noreferrer' href='#'>
-    <img src='utils/images/logo.svg' alt='amaui logo' />
+    <img src='utils/images/logo.svg' alt='onesy logo' />
   </a>
 </p>
 
-<h1 align='center'>amaui Cookie</h1>
+<h1 align='center'>onesy Cookie</h1>
 
 <p align='center'>
   Cookie
@@ -39,33 +39,33 @@
 ### Add
 
 ```sh
-yarn add @amaui/cookie
+yarn add @onesy/cookie
 ```
 
 ### Use
 
 ```javascript
-  import AmauiCookie from '@amaui/cookie';
+  import OnesyCookie from '@onesy/cookie';
 
-  const amauiCookie = new AmauiCookie();
+  const onesyCookie = new OnesyCookie();
 
   // Add
-  amauiCookie.add('a', 4);
+  onesyCookie.add('a', 4);
 
   // Has
-  amauiCookie.has('a');
+  onesyCookie.has('a');
 
   // true
 
   // Get
-  amauiCookie.get('a');
+  onesyCookie.get('a');
 
   // 4
 
   // Remove
-  amauiCookie.remove('a');
+  onesyCookie.remove('a');
 
-  amauiCookie.get('a');
+  onesyCookie.get('a');
 
   // undefined
 ```

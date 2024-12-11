@@ -1,1 +1,1 @@
-export { default } from './AmauiCookie';
+export { default } from './OnesyCookie';

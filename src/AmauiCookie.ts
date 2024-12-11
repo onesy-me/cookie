@@ -1,8 +1,8 @@
-import is from '@amaui/utils/is';
-import isEnvironment from '@amaui/utils/isEnvironment';
-import merge from '@amaui/utils/merge';
-import serialize from '@amaui/utils/serialize';
-import parse from '@amaui/utils/parse';
+import is from '@onesy/utils/is';
+import isEnvironment from '@onesy/utils/isEnvironment';
+import merge from '@onesy/utils/merge';
+import serialize from '@onesy/utils/serialize';
+import parse from '@onesy/utils/parse';
 
 export interface IOptions {
   namespace?: string;
@@ -10,11 +10,11 @@ export interface IOptions {
 }
 
 const optionsDefault: IOptions = {
-  namespace: 'amaui',
+  namespace: 'onesy',
   namespace_separator: '_',
 };
 
-class AmauiCookie {
+class OnesyCookie {
   public options: IOptions;
   public removeNotAllowed: string[] = [];
 
@@ -31,7 +31,7 @@ class AmauiCookie {
   }
 
   public static get clear(): void {
-    const cookieProperties = AmauiCookie.cookie.split('; ').map(item => item.split('=')[0]);
+    const cookieProperties = OnesyCookie.cookie.split('; ').map(item => item.split('=')[0]);
 
     return cookieProperties.forEach(value => document.cookie = `${value}=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/`);
   }
@@ -50,7 +50,7 @@ class AmauiCookie {
     if (isEnvironment('browser')) {
       const items = {};
 
-      const cookies = AmauiCookie.cookie.split('; ').filter(item => item.indexOf(this.namespace) === 0);
+      const cookies = OnesyCookie.cookie.split('; ').filter(item => item.indexOf(this.namespace) === 0);
 
       for (const cookie of cookies) {
         const parts = cookie.split('=');
@@ -120,4 +120,4 @@ class AmauiCookie {
 
 }
 
-export default AmauiCookie;
+export default OnesyCookie;

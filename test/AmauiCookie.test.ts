@@ -1,50 +1,50 @@
 /* tslint:disable: no-shadowed-variable */
-import { assert } from '@amaui/test';
+import { assert } from '@onesy/test';
 
 import { evaluate } from '../utils/js/test/utils';
 
-group('AmauiCookie', () => {
+group('OnesyCookie', () => {
 
   preTo(async () => {
-    await evaluate((window: any) => new window.AmauiCookie().clear);
+    await evaluate((window: any) => new window.OnesyCookie().clear);
   });
 
-  group('AmauiCookie', () => {
+  group('OnesyCookie', () => {
 
     preTo(async () => {
-      await evaluate((window: any) => window.AmauiCookie.clear);
+      await evaluate((window: any) => window.OnesyCookie.clear);
     });
 
     to('cookie', async () => {
       const valueBrowsers = await evaluate((window: any) => {
-        const amauiCookie = new window.AmauiCookie();
+        const onesyCookie = new window.OnesyCookie();
 
-        amauiCookie.add('a', 'a');
-        amauiCookie.add('ab', 4);
-        amauiCookie.add('ad', 4);
+        onesyCookie.add('a', 'a');
+        onesyCookie.add('ab', 4);
+        onesyCookie.add('ad', 4);
 
-        return window.AmauiCookie.cookie;
+        return window.OnesyCookie.cookie;
       });
       const values = [...valueBrowsers];
 
       values.forEach(value => {
-        assert(value).eql('amaui_a=a; amaui_ab=4; amaui_ad=4');
+        assert(value).eql('onesy_a=a; onesy_ab=4; onesy_ad=4');
       });
     });
 
     to('clear', async () => {
       const valueBrowsers = await evaluate((window: any) => {
-        const amauiCookie = new window.AmauiCookie();
+        const onesyCookie = new window.OnesyCookie();
 
-        amauiCookie.add('a', 'a');
-        amauiCookie.add('ab', 4);
-        amauiCookie.add('ad', 4);
+        onesyCookie.add('a', 'a');
+        onesyCookie.add('ab', 4);
+        onesyCookie.add('ad', 4);
 
         window.document.cookie = `a=a`;
 
-        window.AmauiCookie.clear;
+        window.OnesyCookie.clear;
 
-        return window.AmauiCookie.cookie;
+        return window.OnesyCookie.cookie;
       });
       const values = [...valueBrowsers];
 
@@ -58,26 +58,26 @@ group('AmauiCookie', () => {
   group('options', () => {
 
     preTo(async () => {
-      await evaluate((window: any) => window.AmauiCookie.clear);
+      await evaluate((window: any) => window.OnesyCookie.clear);
     });
 
     group('namespace', () => {
 
       preTo(async () => {
-        await evaluate((window: any) => window.AmauiCookie.clear);
+        await evaluate((window: any) => window.OnesyCookie.clear);
       });
 
       to('default', async () => {
-        const valueBrowsers = await evaluate((window: any) => new window.AmauiCookie().namespace);
+        const valueBrowsers = await evaluate((window: any) => new window.OnesyCookie().namespace);
         const values = [...valueBrowsers];
 
         values.forEach(value => {
-          assert(value).eq('amaui_');
+          assert(value).eq('onesy_');
         });
       });
 
       to('namespace', async () => {
-        const valueBrowsers = await evaluate((window: any) => new window.AmauiCookie({ namespace: 'a' }).namespace);
+        const valueBrowsers = await evaluate((window: any) => new window.OnesyCookie({ namespace: 'a' }).namespace);
         const values = [...valueBrowsers];
 
         values.forEach(value => {
@@ -86,30 +86,30 @@ group('AmauiCookie', () => {
       });
 
       to('namespace_separator', async () => {
-        const valueBrowsers = await evaluate((window: any) => new window.AmauiCookie({ namespace_separator: ',' }).namespace);
+        const valueBrowsers = await evaluate((window: any) => new window.OnesyCookie({ namespace_separator: ',' }).namespace);
         const values = [...valueBrowsers];
 
         values.forEach(value => {
-          assert(value).eq('amaui,');
+          assert(value).eq('onesy,');
         });
       });
 
       to('namespace in a document cookie', async () => {
         const valueBrowsers = await evaluate((window: any) => {
-          const amauiCookie = new window.AmauiCookie();
+          const onesyCookie = new window.OnesyCookie();
 
-          amauiCookie.add('a', 'a');
-          amauiCookie.add('ab', 4);
-          amauiCookie.add('ad', 4);
+          onesyCookie.add('a', 'a');
+          onesyCookie.add('ab', 4);
+          onesyCookie.add('ad', 4);
 
-          return window.AmauiCookie.cookie;
+          return window.OnesyCookie.cookie;
         });
         const values = [...valueBrowsers];
 
         values.forEach(value => {
           assert(value).one.eq([
-            'amaui_a=a; amaui_ab=4; amaui_ad=4',
-            'amaui_ab=4; amaui_ad=4; amaui_a=a'
+            'onesy_a=a; onesy_ab=4; onesy_ad=4',
+            'onesy_ab=4; onesy_ad=4; onesy_a=a'
           ]);
         });
       });
@@ -120,13 +120,13 @@ group('AmauiCookie', () => {
 
   to('properties', async () => {
     const valueBrowsers = await evaluate((window: any) => {
-      const amauiCookie = new window.AmauiCookie();
+      const onesyCookie = new window.OnesyCookie();
 
-      amauiCookie.add('a', 4);
-      amauiCookie.add('ab', 4);
-      amauiCookie.add('ad', 4);
+      onesyCookie.add('a', 4);
+      onesyCookie.add('ab', 4);
+      onesyCookie.add('ad', 4);
 
-      return amauiCookie.properties;
+      return onesyCookie.properties;
     });
     const values = [...valueBrowsers];
 
@@ -137,13 +137,13 @@ group('AmauiCookie', () => {
 
   to('values', async () => {
     const valueBrowsers = await evaluate((window: any) => {
-      const amauiCookie = new window.AmauiCookie();
+      const onesyCookie = new window.OnesyCookie();
 
-      amauiCookie.add('a', 'a');
-      amauiCookie.add('ab', 4);
-      amauiCookie.add('ad', 4);
+      onesyCookie.add('a', 'a');
+      onesyCookie.add('ab', 4);
+      onesyCookie.add('ad', 4);
 
-      return amauiCookie.values;
+      return onesyCookie.values;
     });
     const values = [...valueBrowsers];
 
@@ -154,13 +154,13 @@ group('AmauiCookie', () => {
 
   to('items', async () => {
     const valueBrowsers = await evaluate((window: any) => {
-      const amauiCookie = new window.AmauiCookie();
+      const onesyCookie = new window.OnesyCookie();
 
-      amauiCookie.add('a', 'a');
-      amauiCookie.add('ab', 4);
-      amauiCookie.add('ad', 4);
+      onesyCookie.add('a', 'a');
+      onesyCookie.add('ab', 4);
+      onesyCookie.add('ad', 4);
 
-      return amauiCookie.items;
+      return onesyCookie.items;
     });
     const values = [...valueBrowsers];
 
@@ -175,17 +175,17 @@ group('AmauiCookie', () => {
 
   to('clear', async () => {
     const valueBrowsers = await evaluate((window: any) => {
-      const amauiCookie = new window.AmauiCookie();
+      const onesyCookie = new window.OnesyCookie();
 
-      amauiCookie.add('a', 'a');
-      amauiCookie.add('ab', 4);
-      amauiCookie.add('ad', 4);
+      onesyCookie.add('a', 'a');
+      onesyCookie.add('ab', 4);
+      onesyCookie.add('ad', 4);
 
-      window.document.cookie = `amaui_a=4`;
+      window.document.cookie = `onesy_a=4`;
 
-      amauiCookie.clear;
+      onesyCookie.clear;
 
-      return window.AmauiCookie.cookie;
+      return window.OnesyCookie.cookie;
     });
 
     const values = [...valueBrowsers];
@@ -197,11 +197,11 @@ group('AmauiCookie', () => {
 
   to('get', async () => {
     const valueBrowsers = await evaluate((window: any) => {
-      const amauiCookie = new window.AmauiCookie();
+      const onesyCookie = new window.OnesyCookie();
 
-      amauiCookie.add('a', 'a');
+      onesyCookie.add('a', 'a');
 
-      return amauiCookie.get('a');
+      return onesyCookie.get('a');
     });
     const values = [...valueBrowsers];
 
@@ -212,11 +212,11 @@ group('AmauiCookie', () => {
 
   to('has', async () => {
     const valueBrowsers = await evaluate((window: any) => {
-      const amauiCookie = new window.AmauiCookie();
+      const onesyCookie = new window.OnesyCookie();
 
-      amauiCookie.add('a', 'a');
+      onesyCookie.add('a', 'a');
 
-      return amauiCookie.has('a');
+      return onesyCookie.has('a');
     });
     const values = [...valueBrowsers];
 
@@ -229,11 +229,11 @@ group('AmauiCookie', () => {
 
     to('add', async () => {
       const valueBrowsers = await evaluate((window: any) => {
-        const amauiCookie = new window.AmauiCookie();
+        const onesyCookie = new window.OnesyCookie();
 
-        amauiCookie.add('a', 'a');
+        onesyCookie.add('a', 'a');
 
-        return [amauiCookie.get('a'), window.document.cookie.indexOf('amaui_a=a') > -1];
+        return [onesyCookie.get('a'), window.document.cookie.indexOf('onesy_a=a') > -1];
       });
       const values = [...valueBrowsers];
 
@@ -244,19 +244,19 @@ group('AmauiCookie', () => {
 
     to('add reference value', async () => {
       const valueBrowsers = await evaluate((window: any) => {
-        const amauiCookie = new window.AmauiCookie();
+        const onesyCookie = new window.OnesyCookie();
 
-        amauiCookie.add('a', 'a');
-        amauiCookie.add('ay', true);
-        amauiCookie.add('au', [1, 4]);
-        amauiCookie.add('ao', { a: 'a' });
+        onesyCookie.add('a', 'a');
+        onesyCookie.add('ay', true);
+        onesyCookie.add('au', [1, 4]);
+        onesyCookie.add('ao', { a: 'a' });
 
-        return [amauiCookie.get('a'), amauiCookie.get('ay'), amauiCookie.get('au'), window.document.cookie.split('; ')[2], amauiCookie.get('ao')];
+        return [onesyCookie.get('a'), onesyCookie.get('ay'), onesyCookie.get('au'), window.document.cookie.split('; ')[2], onesyCookie.get('ao')];
       });
       const values = [...valueBrowsers];
 
       values.forEach(value => {
-        assert(value).eql(['a', true, [1, 4], 'amaui_au=[1,4]', { a: 'a' }]);
+        assert(value).eql(['a', true, [1, 4], 'onesy_au=[1,4]', { a: 'a' }]);
       });
     });
 
@@ -264,12 +264,12 @@ group('AmauiCookie', () => {
 
   to('update', async () => {
     const valueBrowsers = await evaluate((window: any) => {
-      const amauiCookie = new window.AmauiCookie();
+      const onesyCookie = new window.OnesyCookie();
 
-      amauiCookie.add('a', 4);
-      amauiCookie.update('a', 'a');
+      onesyCookie.add('a', 4);
+      onesyCookie.update('a', 'a');
 
-      return [amauiCookie.get('a'), window.document.cookie.indexOf('amaui_a=a') > -1];
+      return [onesyCookie.get('a'), window.document.cookie.indexOf('onesy_a=a') > -1];
     });
     const values = [...valueBrowsers];
 
@@ -280,13 +280,13 @@ group('AmauiCookie', () => {
 
   to('remove', async () => {
     const valueBrowsers = await evaluate((window: any) => {
-      const amauiCookie = new window.AmauiCookie();
+      const onesyCookie = new window.OnesyCookie();
 
-      amauiCookie.add('a', 'a');
+      onesyCookie.add('a', 'a');
 
-      amauiCookie.remove('a');
+      onesyCookie.remove('a');
 
-      return [amauiCookie.get('a'), window.document.cookie];
+      return [onesyCookie.get('a'), window.document.cookie];
     });
     const values = [...valueBrowsers];
 
